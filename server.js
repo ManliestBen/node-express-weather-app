@@ -3,8 +3,11 @@ require('dotenv').config();
 let request = require('request');
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 app.set('view engine', 'ejs');
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 let apiKey = process.env.APIKEY;
@@ -27,6 +30,11 @@ request(apiUrl, function (err, response, body) {
 app.get('/', function (req, res) {
   res.render('index');
 });
+
+app.post('/', function (req, res) {
+  res.render('index');
+  console.log(req.body.city);
+})
 
 app.listen(3000, function () {
   console.log('Listening on port 3000')
