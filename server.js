@@ -27,11 +27,12 @@ app.post('/', function (req, res) {
         res.render('index', {weather: null, error: 'Please try again'});
       } else {
           let weather = JSON.parse(body);
+          let iconUrl = `http://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
           if (weather.main == undefined){
             res.render('index', {weather: null, error: 'Please try again'});
           } else {
-              let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
-              res.render('index', {weather: message, error: null});
+              let message = `It's ${weather.main.temp} degrees in ${weather.name} with ${weather.weather[0].main}.`;
+              res.render('index', {weather: message, iconUrl:iconUrl, error: null});
           }
       }
   });
