@@ -1,6 +1,9 @@
 require('dotenv').config();
 
 let request = require('request');
+const express = require('express');
+const app = express();
+
 
 let apiKey = process.env.APIKEY;
 let city = 'austin';
@@ -18,3 +21,11 @@ request(apiUrl, function (err, response, body) {
     }
     }
 );
+
+app.get('/', function (req, res) {
+  res.send('Express server is running!')
+});
+
+app.listen(3000, function () {
+  console.log('Listening on port 3000')
+});
