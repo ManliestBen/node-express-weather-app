@@ -31,7 +31,7 @@ app.post('/', function (req, res) {
           if (weather.main == undefined){
             res.render('index', {weather: null, error: 'Please try again'});
           } else {
-              let message = `It's ${weather.main.temp} degrees in ${weather.name} with ${weather.weather[0].main}.`;
+              let message = `It's ${weather.main.temp} °F in ${weather.name} with ${weather.weather[0].main}.`;
               res.render('index', {weather: message, iconUrl:iconUrl, error: null});
           }
       }
