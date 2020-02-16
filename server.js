@@ -27,15 +27,15 @@ app.post('/', function (req, res) {
         res.render('index', {weather: null, error: 'Please try again'});
       } else {
           let weather = JSON.parse(body);
-          console.log(weather)
-          let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
-            
+          if (weather.main == undefined){
+            res.render('index', {weather: null, error: 'Please try again'});
+          } else {
+              let message = `It's ${weather.main.temp} degrees in ${weather.name}!`;
+              res.render('index', {weather: message, error: null});
+          }
       }
-      }
-  );
-  res.render('index');
-  console.log(req.body.city);
-})
+  });
+});
 
 app.listen(3000, function () {
   console.log('Listening on port 3000')
