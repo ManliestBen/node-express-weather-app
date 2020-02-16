@@ -4,6 +4,8 @@ let request = require('request');
 const express = require('express');
 const app = express();
 
+app.set('view engine', 'ejs');
+
 
 let apiKey = process.env.APIKEY;
 let city = 'austin';
@@ -23,7 +25,7 @@ request(apiUrl, function (err, response, body) {
 );
 
 app.get('/', function (req, res) {
-  res.send('Express server is running!')
+  res.render('index');
 });
 
 app.listen(3000, function () {
