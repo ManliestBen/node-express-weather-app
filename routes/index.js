@@ -5,7 +5,7 @@ let request = require('request');
 let apiKey = process.env.APIKEY;
 
 router.get('/', function (req, res) {
-  res.render('index');
+  res.render('index', {weather: null, iconUrl: ' ', error: null});
 });
 
 router.post('/', function (req, res) {
